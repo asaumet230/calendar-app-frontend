@@ -7,6 +7,7 @@ import 'moment/locale/es';
 // Components:
 import NavBar from '../../components/ui/NavBar';
 import CalendarEvent from './CalendarEvent';
+import CalendarModal from './CalendarModal';
 
 // Styles Big Calendar:
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -85,6 +86,8 @@ const CalendarScreen = () => {
           event: CalendarEvent,
         }}
       />
+
+      <CalendarModal />
       
     </div>
   )

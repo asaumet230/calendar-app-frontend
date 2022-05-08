@@ -9,3 +9,13 @@ body {
     flex-flow: column;
     height: 100vh;
 }
+
+/* Date Picker */
+
+.react-datetime-picker input:focus {
+    outline: none;
+}
+
+.react-datetime-picker__wrapper{
+    border: none;
+}
