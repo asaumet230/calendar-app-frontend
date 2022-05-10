@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
+import Swal from 'sweetalert2';
 
 //Css:
 import './modal.css';
@@ -21,23 +22,78 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const now = moment().minutes(0).seconds(0).add(1, 'hours');
-const end = now.clone().add(1, 'hours');
+const endDate = now.clone().add(1, 'hours');
 
 const CalendarModal = () => {
 
     const [ dateStart, setDateStart ] = useState( now.toDate() );
-    const [ dateEnd, setDateEnd ] = useState( end.toDate() );
+    const [ dateEnd, setDateEnd ] = useState( endDate.toDate() );
+    const [ titleValid, setTitleValid ] = useState(true);
+
+
+    // Form Values:
+    const [ formValues, setFormValues ] = useState({
+        title: '',
+        notes: '',
+        start: now.toDate(),
+        end: endDate.toDate()
+    });
+
+    const  { title, notes, start, end } = formValues;
+
+    const handleInputChange = ({ target }) => {
+
+        setFormValues({
+            ...formValues,
+            [target.name]: target.value
+        })
+    }
 
     const closeModal = () => { 
         
     }
 
     const handleStartDateChange = (e) => { 
+
         setDateStart(e);
+        setFormValues({
+            ...formValues,
+            start: e
+        });
     }
 
     const handleEndDateChange = (e) => {
+
         setDateEnd(e);
+        setFormValues({
+            ...formValues,
+            end: e
+        });
+    }
+
+    // Submit Form:
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        const momentStart = moment( start );
+        const momentEnd = moment( end );
+      
+        if( momentStart.isSameOrAfter( momentEnd, 'hour' ) ) {
+
+           return Swal.fire({
+                    title: 'Error!',
+                    text: 'Start date is after end date',
+                    icon: 'error',
+                    confirmButtonText: 'Cool'
+                });
+        }
+
+        if( title.trim().length < 2  ) {
+            return setTitleValid(false);
+        }
+
+        setTitleValid(true);
+        closeModal();
     }
 
     return (
@@ -52,7 +108,9 @@ const CalendarModal = () => {
         >
             <h2> Nuevo evento </h2>
             <hr />
-            <form className="container">
+            <form 
+                className="container"
+                onSubmit={ handleSubmit }>
 
                 <div className="form-group">
 
@@ -72,7 +130,6 @@ const CalendarModal = () => {
                     <DateTimePicker 
                         onChange={ handleEndDateChange } 
                         value={ dateEnd }
-                        minDate={ dateStart }
                         className="form-control" />
                    
                 </div>
@@ -83,9 +140,11 @@ const CalendarModal = () => {
                     <label>Titulo y notas</label>
                     <input 
                         type="text" 
-                        className="form-control"
+                        className={ `form-control ${ !titleValid && 'is-invalid' }` }
                         placeholder="Título del evento"
                         name="title"
+                        value = { title }
+                        onChange= { handleInputChange }
                         autoComplete="off"
                     />
                     <small id="emailHelp" className="form-text text-muted">Una descripción corta</small>
@@ -98,6 +157,8 @@ const CalendarModal = () => {
                         placeholder="Notas"
                         rows="5"
                         name="notes"
+                        value = { notes }
+                        onChange= { handleInputChange }
                     ></textarea>
                     <small id="emailHelp" className="form-text text-muted">Información adicional</small>
                 </div>
