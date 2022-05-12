@@ -5,7 +5,7 @@ import uiReducer from "./uiReducers";
 
 
 const rootReducer = combineReducers({
-    uis: uiReducer,
+    ui: uiReducer,
 });
 
 
