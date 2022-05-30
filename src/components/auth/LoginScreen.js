@@ -9,7 +9,7 @@ import useForm from '../../hooks/useForm';
 import './login.css';
 
 // Actions:
-import { startLogin }  from '../../actions/auth';
+import { startLogin, startRegister }  from '../../actions/auth';
 
 // Helpers:
 import { registerFormValid } from '../../helpers/registerFormValid';
@@ -66,7 +66,7 @@ const LoginScreen = () => {
                 setError, 
                 setErrorMessage ) ) {
 
-            console.log( registerName, registerEmail, registerPassword, registerPassword2 );
+            dispatch( startRegister( registerName, registerEmail, registerPassword ));
         }
 
         registerReset();
