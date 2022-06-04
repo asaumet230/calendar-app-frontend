@@ -12,13 +12,14 @@ const NavBar = () => {
 
   const handleLogout = () => { 
 
-    dispatch( startLogout() )
+    dispatch( startLogout() );
+ 
 
   }
   return (
     <div className="navbar navbar-dark bg-dark mb-4">
         <span className="navbar-brand">
-                { name }
+          { name }
         </span>
 
         <button 

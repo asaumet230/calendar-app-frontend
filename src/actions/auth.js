@@ -4,6 +4,9 @@ import Swal from "sweetalert2";
 // Helpers:
 import { fetchConToken, fetchSinToken } from "../helpers/fetch"
 
+// Actions:
+import { eventLogout } from "./events";
+
 
 // Midellwares:
 export const startLogin = (email, password) => {
@@ -81,6 +84,7 @@ export const startLogout = () => {
     return async ( dispatch ) => {
             
         localStorage.clear();
+        dispatch( eventLogout() );
         dispatch( logout() );
     }
 }
