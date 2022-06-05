@@ -22,15 +22,15 @@ const LoginScreen = () => {
     const [ erroMessage, setErrorMessage ] = useState( '' );
 
     const [ formLoginValues, handleInputChanges, reset ] = useForm({
-        loginEmail: 'test2@test.com',
-        loginpassword: '123456'
+        loginEmail: '',
+        loginpassword: ''
     });
 
     const [ formRegisterValues, handleInputRegisterChanges, registerReset ] = useForm({
-        registerName: 'test5',
-        registerEmail: 'test5@test.com',
-        registerPassword: '123456',
-        registerPassword2: '123456'
+        registerName: '',
+        registerEmail: '',
+        registerPassword: '',
+        registerPassword2: ''
     });
   
     const { loginEmail, loginpassword } = formLoginValues;
