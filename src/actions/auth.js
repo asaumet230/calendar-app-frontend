@@ -38,7 +38,6 @@ export const startRegister = ( name, email, password ) => {
             
         const resp = await fetchSinToken('users/new', { name, email, password }, 'POST');
         const data = await resp.json();
-        console.log(data);
 
         if( data.ok ) {
                 
