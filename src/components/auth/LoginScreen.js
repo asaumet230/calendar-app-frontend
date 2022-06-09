@@ -40,17 +40,20 @@ const LoginScreen = () => {
     const handleLogin = (e) => {
 
         e.preventDefault();
+       
 
         if( loginFormValid( 
                 loginEmail, 
                 loginpassword, 
                 setError, 
-                setErrorMessage ) ) {
+                setErrorMessage )) {
+
+           
 
             dispatch( startLogin( loginEmail, loginpassword ) );
         }
 
-        reset();
+        // reset();
 
     }
 
@@ -69,7 +72,7 @@ const LoginScreen = () => {
             dispatch( startRegister( registerName, registerEmail, registerPassword ));
         }
 
-        registerReset();
+        // registerReset();
     }
 
 
