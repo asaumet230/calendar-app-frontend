@@ -15,15 +15,13 @@ import LoginScreen from '../../../components/auth/LoginScreen';
 // Helpers:
 import { loginFormValid } from '../../../helpers/loginFormValid';
 import { registerFormValid } from '../../../helpers/registerFormValid';
- 
+
 
 jest.mock('../../../actions/auth', () => ({
     startLogin: jest.fn(),
+    startRegister: jest.fn(),
 }));
 
-jest.mock('../../../actions/auth', () => ({
-    startRegister: jest.fn(),
-}))
 
 jest.mock('../../../helpers/loginFormValid');
 jest.mock('../../../helpers/registerFormValid');
@@ -82,8 +80,9 @@ describe('Pruebas en el componente <loginScreen />', () => {
             preventDefault: () => {}
         });
 
-        expect( loginFormValid ).toHaveBeenCalled();
         
+        expect( loginFormValid ).toHaveBeenCalled();
+
     });
 
     test('Si no pasa la validación no debe de pasar a la acción startRegister', () => { 

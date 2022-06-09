@@ -53,7 +53,7 @@ const LoginScreen = () => {
             dispatch( startLogin( loginEmail, loginpassword ) );
         }
 
-        // reset();
+        reset();
 
     }
 
@@ -72,7 +72,7 @@ const LoginScreen = () => {
             dispatch( startRegister( registerName, registerEmail, registerPassword ));
         }
 
-        // registerReset();
+        registerReset();
     }
 
 
