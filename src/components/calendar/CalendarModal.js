@@ -103,7 +103,7 @@ const CalendarModal = () => {
         
         const momentStart = moment( start );
         const momentEnd = moment( end );
-        console.log(momentEnd);
+        // console.log(momentEnd);
 
         if( momentStart.isSameOrAfter( momentEnd, 'hour' ) ) {
 
